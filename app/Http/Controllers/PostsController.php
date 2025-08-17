@@ -2,18 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\View;
+
 class PostsController
 {
+
+  public function index()
+  {
+    $posts = [
+      ['title' => 'title 1', 'content' => 'contenido 1'],
+      ['title' => 'title 2', 'content' => 'contenido 2'],
+      ['title' => 'title 3', 'content' => 'contenido 3']
+    ];
+    $etiqueta = '<p>esto es un parrafo</p>';
+    $dia = 4;
+
+    return view('welcome', [
+      'etiqueta' => $etiqueta,
+      'posts' => $posts,
+      'dia' => $dia
+    ]);
+  }
 
 
   public function posts()
   {
-    return "mostrando todos los posts de la aplicación";
+    // devolviendo a una vista con la función auxiliar global view() y pasandole parametros
+    //return view('posts.show')->with('name', 'juan');
+
+    return view('posts.show', ['name' => 'juan']);
   }
 
   public function post($id)
   {
-    return "mostrando el posts con id $id";
+    // comprobando existencia de una vista
+    if (View::exists('admin.profile')) {
+      echo "entro";
+      return View::make('admin.profile');
+    }
+    // para renderizar vista tambien podemos usar fachadas
+    return View::make('posts.edit', ['id' => $id]);
   }
 
   public function postsCreate()

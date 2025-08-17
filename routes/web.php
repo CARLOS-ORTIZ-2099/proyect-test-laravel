@@ -69,41 +69,48 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-/* 
-
-  Route::get('/', function () {
-    // esto hace redirecciones a la ruta cuyo nombre coincida con el parametro que reciba la funcion route
-    //  return redirect()->route('posts.posts');
-
-    // esto muestra la URI de la ruta cuyo nombre coincida con el parametro que reciba la funcion route
-    //return route('posts.posts');
-
-    // si la ruta a la cual vamos a hacer mencion mediante su nombre recibe parametros,  lo pasamos como segundo parametro de la funcion route
-    // return route('posts.post', 80);
-    // en caso recibiera más de 1
-    // return route('posts.post', ['id' => 80, 'user' => 80]);
-  });
-
-  Route::get('/posts', [PostsController::class, 'posts'])->name('posts.posts');
-
-  Route::get('/cambiodepostaalgomas', [PostsController::class, 'posts'])->name('posts.posts');
 
 
-  Route::get('/posts/{id}', [PostsController::class, 'post'])->where(['id' => '[0-9]+'])->name('posts.post');
+Route::get('/', function () {
+  // esto hace redirecciones a la ruta cuyo nombre coincida con el parametro que reciba la funcion route
+  //  return redirect()->route('posts.posts');
 
-  Route::post('/posts/crear', [PostsController::class, 'postsCreate'])->name('posts.postsCreate');
+  // esto muestra la URI de la ruta cuyo nombre coincida con el parametro que reciba la funcion route
+  //return route('posts.posts');
 
-  Route::delete('/posts/eliminar/{id}', [PostsController::class, 'deletePost'])->name('posts.deletePost');
+  // si la ruta a la cual vamos a hacer mencion mediante su nombre recibe parametros,  lo pasamos como segundo parametro de la funcion route
+  // return route('posts.post', 80);
+  // en caso recibiera más de 1
+  // return route('posts.post', ['id' => 80, 'user' => 80]);
+});
 
-*/
+Route::get('/', [PostsController::class, 'index'])->name('posts.index');
+Route::get('/posts', [PostsController::class, 'posts'])->name('posts.posts');
+
+Route::get('/cambiodepostaalgomas', [PostsController::class, 'posts'])->name('posts.posts');
+
+
+Route::get('/posts/{id}', [PostsController::class, 'post'])->where(['id' => '[0-9]+'])->name('posts.post');
+
+Route::post('/posts/crear', [PostsController::class, 'postsCreate'])->name('posts.postsCreate');
+
+Route::delete('/posts/eliminar/{id}', [PostsController::class, 'deletePost'])->name('posts.deletePost');
+
+
 
 
 /* rutas para un crud básico (Route Resource)
    este código sirve para para crear una "plantilla" para un sistema que 
    requiera un CRUD 
 */
-//Route::resource('users', UserController::class);
 
+/* Route::resource('users', UserController::class);
+   // creando multiples recursos a la vez 
+   Route::resources([
+    'photos' => PhotoController::class,
+    'posts' => PostController::class,
+   ]) 
+*/
 
 
 /*  grupo de rutas 
