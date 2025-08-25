@@ -85,6 +85,8 @@ Route::get('/', function () {
 });
 
 Route::get('/', [PostsController::class, 'index'])->name('posts.index');
+Route::get('/welcome', [PostsController::class, 'welcome'])->name('posts.index');
+
 Route::get('/posts', [PostsController::class, 'posts'])->name('posts.posts');
 
 Route::get('/cambiodepostaalgomas', [PostsController::class, 'posts'])->name('posts.posts');
